@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>(); //Lifetime services
 builder.Services.AddScoped<ITicketService, TicketService>();
 
 
