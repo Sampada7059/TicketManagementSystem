@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace TicketManagementSystem.Models;
+
+public partial class User
+{
+    public int UserId { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public string Email { get; set; } = null!;
+
+    public string Role { get; set; } = null!;
+
+    public virtual ICollection<TicketComment> TicketComments { get; set; } = new List<TicketComment>();
+
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+}
