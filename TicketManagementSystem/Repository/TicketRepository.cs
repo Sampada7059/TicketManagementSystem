@@ -3,6 +3,7 @@ using System;
 using TicketManagementSystem.Models;
 using TicketManagementSystem.Interface;
 using Microsoft.EntityFrameworkCore;
+using TicketManagementSystem.Data;
 
 namespace TicketManagementSystem.Repository
 {

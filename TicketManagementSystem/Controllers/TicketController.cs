@@ -48,7 +48,7 @@ namespace TicketManagementSystem.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> GetTickets()
         {
             try
@@ -68,7 +68,6 @@ namespace TicketManagementSystem.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "User")]
-
         public async Task<IActionResult> UpdateTicket(int id, [FromBody] UpdateTicketDto dto)
         {
             try
