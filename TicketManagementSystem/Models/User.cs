@@ -13,6 +13,8 @@ public partial class User
 
     public string Role { get; set; } = null!;
 
+    public string Password { get; set; } = null!;
+
     public virtual ICollection<TicketComment> TicketComments { get; set; } = new List<TicketComment>();
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
