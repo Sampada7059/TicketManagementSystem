@@ -1,6 +1,4 @@
-﻿using System.Net.Sockets;
-using System;
-using TicketManagementSystem.Models;
+﻿using TicketManagementSystem.Models;
 using TicketManagementSystem.Interface;
 using Microsoft.EntityFrameworkCore;
 using TicketManagementSystem.Data;
