@@ -6,6 +6,7 @@ using System.Text;
 using TicketManagementSystem.Models;
 using TicketManagementSystem.DTOs;
 using TicketManagementSystem.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace TicketManagementSystem.Controllers;
 
@@ -26,7 +27,12 @@ public class AuthController : ControllerBase
     public IActionResult Login([FromBody] LoginDto login)
     {
         var user = _context.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
-        if (user == null) return Unauthorized("Invalid credentials");
+        if (user == null) 
+            return Unauthorized("Invalid credentials");
+
+        var result = new PasswordHasher<User>().VerifyHashedPassword(null, user.Password, login.Password);
+        if (result != PasswordVerificationResult.Success)
+            return Unauthorized("Invalid credentials");
 
         var token = GenerateJwtToken(user);
         return Ok(new { token });
@@ -42,7 +48,7 @@ public class AuthController : ControllerBase
         {
             Name = register.Name,
             Email = register.Email,
-            Password = register.Password,
+            Password = new PasswordHasher<User>().HashPassword(null, register.Password),
             Role = "User"
         };
 
