@@ -69,6 +69,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>(); //Lifetime services
 builder.Services.AddScoped<ITicketService, TicketService>();
 
+// to register comment service
+builder.Services.AddScoped<ITicketCommentService, TicketCommentService>();
 
 var app = builder.Build();
 
