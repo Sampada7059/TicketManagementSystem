@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using TicketManagementSystem.Models;
 
 namespace TicketManagementSystem
 {
-    public class PasswordHelper
+    public static class PasswordHelper
     {
         public static string HashPassword(string password)
         {
-            var passwordHasher = new PasswordHasher<object>();
-            return passwordHasher.HashPassword(null, password);
+            var hasher = new PasswordHasher<Object>();
+            return hasher.HashPassword(null, password);
         }
 
-        public static bool VerifyPassword(string hashedPassword, string inputPassword)
+        public static bool VerifyPassword(string hashedPassword, string plainPassword)
         {
-            var passwordHasher = new PasswordHasher<object>();
-            var result = passwordHasher.VerifyHashedPassword(null, hashedPassword, inputPassword);
+            var hasher = new PasswordHasher<Object>();
+            var result = hasher.VerifyHashedPassword(null, hashedPassword, plainPassword);
             return result == PasswordVerificationResult.Success;
         }
     }

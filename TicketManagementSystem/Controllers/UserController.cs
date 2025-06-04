@@ -12,12 +12,12 @@ namespace TicketManagementSystem.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly TicketManagementDbContext _context;
     private readonly IConfiguration _config;
 
-    public AuthController(TicketManagementDbContext context, IConfiguration config)
+    public UserController(TicketManagementDbContext context, IConfiguration config)
     {
         _context = context;
         _config = config;
@@ -26,17 +26,21 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginDto login)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
-        if (user == null) 
+        if (login == null || string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
+            return BadRequest("Email and password are required.");
+
+        var user = _context.Users.FirstOrDefault(u => u.Email == login.Email);
+        if (user == null)
             return Unauthorized("Invalid credentials");
 
-        var result = new PasswordHasher<User>().VerifyHashedPassword(null, user.Password, login.Password);
-        if (result != PasswordVerificationResult.Success)
-            return Unauthorized("Invalid credentials");
+        var hasher = new PasswordHasher<User>();
+        var result = hasher.VerifyHashedPassword(null, user.Password, login.Password);
 
         var token = GenerateJwtToken(user);
         return Ok(new { token });
     }
+
+
 
     [HttpPost("register")]
     public IActionResult Register([FromBody] RegisterDto register)

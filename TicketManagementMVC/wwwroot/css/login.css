@@ -1,0 +1,28 @@
+﻿body {
+/*    background-color: #121212;
+*/    color: #eee;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+    .auth-card input {
+        background-color: #2a2a2a;
+        color: #eee;
+        border: 1px solid #555;
+    }

@@ -1,0 +1,27 @@
+﻿body {
+    color: #eee;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 450px;
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+    .register-card input {
+        background-color: #2a2a2a;
+        color: #eee;
+        border: 1px solid #555;
+    }

@@ -10,6 +10,17 @@ using TicketManagementSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add CORS policy - allow only a specific origin
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("https://localhost:7039") // Replace with your actual frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 //JWT Bearer
 builder.Services.AddSwaggerGen(c =>
 {
@@ -73,6 +84,9 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<ITicketCommentService, TicketCommentService>();
 
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigin");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
